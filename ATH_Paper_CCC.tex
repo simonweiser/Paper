@@ -5,22 +5,22 @@
 % copyright statement.
 
 % Copyright
-\CopyrightYear{2016}
-%\setcopyright{acmcopyright}
-\setcopyright{acmlicensed}
-%\setcopyright{rightsretained}
-%\setcopyright{usgov}
-%\setcopyright{usgovmixed}
-%\setcopyright{cagov}
-%\setcopyright{cagovmixed}
-% DOI
-\doi{http://dx.doi.org/10.475/123_4}
-% ISBN
-\isbn{123-4567-24-567/08/06}
-%Conference
-\conferenceinfo{CHI'16,}{May 07--12, 2016, San Jose, CA, USA}
-%Price
-\acmPrice{\$15.00}
+%\CopyrightYear{2016}
+%%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%%\setcopyright{rightsretained}
+%%\setcopyright{usgov}
+%%\setcopyright{usgovmixed}
+%%\setcopyright{cagov}
+%%\setcopyright{cagovmixed}
+%% DOI
+%\doi{http://dx.doi.org/10.475/123_4}
+%% ISBN
+%\isbn{123-4567-24-567/08/06}
+%%Conference
+%\conferenceinfo{CHI'16,}{May 07--12, 2016, San Jose, CA, USA}
+%%Price
+%\acmPrice{\$15.00}
 
 % Use this command to override the default ACM copyright statement
 % (e.g. for preprints).  Consult the conference website for the
@@ -58,6 +58,11 @@
 \usepackage{color}
 \usepackage{booktabs}
 \usepackage{textcomp}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{float}
+\usepackage{graphicx, subcaption}
 
 % Some optional stuff you might like/need.
 \usepackage{microtype}        % Improved Tracking and Kerning
@@ -172,6 +177,86 @@ TODO: put text here
 
 \section{Implementation}
 
+We designed a simple and ordinary contacts app which is enhanced by displaying the context of the person you want to call. For our goal the term context means to consider mostly all of these information:
+\newline
+
+\begin{center}
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}[center]{l}
+\toprule
+Context Information\\
+\midrule
+Activity \\
+Road Type \\
+Destination \\
+Remaining Travel Time \\
+Position \\
+Hands-free Speaking \\
+Speed \\
+Weather \\
+\bottomrule
+\end{tabular}
+\end{center}
+\caption[Context Information]{Context Information.\label{tab:cont}}
+\end{table}
+\end{center}
+
+First of all you want to know what the person you want to call is doing at the moment. We distinguished between the activities \textit{driving}, \textit{cycling} and \textit{still} where the latter means the person to call is doing nothing right now and his/her device is motionless on a table for example. Depending on if someone is driving you want to have the listed additional information. One would be the road type which lets you know if someone is driving e.g. in a city or on a highway etc. Another one is the destination the person is heading to and the remaining travel time. Therefore you need the person's position. This could either be a pinpoint GPS-coordinate, or if the user does not want to share his exact location, just a radius or a place name of his current position. Another very important aspect of the person's context is if hands-free speaking is enabled or disabled while in the car. 
+
+Besides information about the speed and the current weather situation are helpful to know. At the current state of our app all of these information can be accessed automatically except the destination and the remaining travel time, which have to be typed in manually.
+
+\subsection{App Design}
+The Android-App we build basically consists of two different views, an overview and a detail view (see figure \ref{fig:app}).
+\newline
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.23\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{figures/app_1}
+  \caption{Overview}
+  \label{fig:app_1}
+\end{subfigure}
+\begin{subfigure}{.23\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{figures/app_2}
+  \caption{Detailview}
+  \label{fig:app_2}
+\end{subfigure}
+\caption{Android Application ContextCall}
+\label{fig:app}
+\end{figure}
+
+On the overview on the left you see all your contacts as you know it from other contacts apps, but with the additional information about a person's activity, which is shown by the icons next to the image and the string below the name. By taping on a contact, the detail view appears and shows the additional context information mentioned in table \ref{tab:cont}. The particular case in figure \ref{fig:app_2} for example gives information about the road type, the destination and the remaining travel time. Furthermore you get informed that hands-free speaking is enabled. If you then decide to call 'Anna' although she is driving, a small alert pops up and gives you three options (see figure \ref{fig:app_3}). You can either call her or not, or you make use of the '\textit{remind me}'-option which notifies you when her status is 'still'.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.55\columnwidth]{figures/app_3}
+  \caption{Alert Pop-Up}~\label{fig:app_3}
+\end{figure}
+At the beginning we implemented most of the context recognition by our own. We used for example GPS to find out if someone is driving. If someone's speed was over 10 kilometers per hour we set the status to 'driving'. But in mid-May of 2016 Google released its new so-called \textit{Awareness API}\footnote{https://developers.google.com/awareness/} which made things much easier for us as programmers. From this point on we were able to get the activity of a user by only a few lines of code and this API became the core of our application.
+
+The Awareness API is part of the \textit{Google Play Services} and is a unified sensing platform, enabling apps to be aware of all aspects of a user's context, while managing system health for you \cite{you16}. With this API your app is able to recognize the following 7 different context types \cite{goo16}:
+\begin{description}
+\item[Location]
+The user's current location as a latitude and longitude value.
+\item[Place]
+A semantic version of a location that is called place (including the place type, e.g. a coffee shop).
+\item[Beacons]
+What is around a user? Are there nearby beacons that can be detected and identified?
+\item[Time]
+The local time of a user that can be combined with other context information to form a more complex condition.
+\item[Headphones' State]
+Are headphones plugged in the device or not?
+\item[Weather]
+Ambient conditions like the weather, which have an effect on the user's behavior.
+\item[Activity]
+The detected user activity (e.g. walking, running, biking and driving)
+\end{description}
+
+The latter of these is the important one for the goal of activity and context recognition. All of these information can be combined using \textit{AND}, \textit{OR}, and \textit{NOT} boolean operators to build complicated conditions that have to be met to trigger a notification. E.g. you can construct a condition that says that the user is driving in the car AND he is near a pharmacy AND it is during the opening hours of that shop. If these requirements are fulfilled, then you tell the user that he can pick up the wanted medication.
+
+In particular, we used the \textit{Fence API}\footnote{https://developers.google.com/awareness/android-api/fence-api-overview}, which is part of the Awareness API. The concept of \textit{fences} is taken from Geo-Fencing, in which a geographic region, or "Geo- Fence", is defined, and an app receives callbacks when a user enters or leaves a region. Only that in this case it is not a region that is entered but an activity. So whenever the activity state transitions, it lets our app react to the user's current activity. For example, "Tell me whenever the user is driving". Once the conditions are met the app receives a callback and we can update the status of a user.
+
 \subsection{Title and Authors}
 
 Your paper's title, authors and affiliations should run across the
@@ -223,14 +308,6 @@ On pages beyond the first, start at the top of the page and continue
 in double-column format.  The two columns on the last page should be
 of equal length.
 
-\begin{figure}
-\centering
-  \includegraphics[width=0.9\columnwidth]{figures/sigchi-logo}
-  \caption{Insert a caption below each figure. Do not alter the
-    Caption style.  One-line captions should be centered; multi-line
-    should be justified. }~\label{fig:figure1}
-\end{figure}
-
 \subsection{References and Citations}
 
 Use a numbered list of references at the end of the article, ordered
@@ -253,25 +330,25 @@ according to ACM format, although it is often appropriate to include
 URLs directly in the text, as above.
 
 
-% Use a numbered list of references at the end of the article, ordered
-% alphabetically by first author, and referenced by numbers in
-% brackets~\cite{ethics, Klemmer:2002:WSC:503376.503378,
-%   Mather:2000:MUT, Zellweger:2001:FAO:504216.504224}. For papers from
-% conference proceedings, include the title of the paper and an
-% abbreviated name of the conference (e.g., for Interact 2003
-% proceedings, use \textit{Proc. Interact 2003}). Do not include the
-% location of the conference or the exact date; do include the page
-% numbers if available. See the examples of citations at the end of this
-% document. Within this template file, use the \texttt{References} style
-% for the text of your citation.
+ Use a numbered list of references at the end of the article, ordered
+ alphabetically by first author, and referenced by numbers in
+ brackets~\cite{ethics, Klemmer:2002:WSC:503376.503378,
+   Mather:2000:MUT, Zellweger:2001:FAO:504216.504224}. For papers from
+ conference proceedings, include the title of the paper and an
+ abbreviated name of the conference (e.g., for Interact 2003
+ proceedings, use \textit{Proc. Interact 2003}). Do not include the
+ location of the conference or the exact date; do include the page
+ numbers if available. See the examples of citations at the end of this
+ document. Within this template file, use the \texttt{References} style
+ for the text of your citation.
 
-% Your references should be published materials accessible to the
-% public.  Internal technical reports may be cited only if they are
-% easily accessible (i.e., you provide the address for obtaining the
-% report within your citation) and may be obtained by any reader for a
-% nominal fee.  Proprietary information may not be cited. Private
-% communications should be acknowledged in the main text, not referenced
-% (e.g., ``[Robertson, personal communication]'').
+ Your references should be published materials accessible to the
+ public.  Internal technical reports may be cited only if they are
+ easily accessible (i.e., you provide the address for obtaining the
+ report within your citation) and may be obtained by any reader for a
+ nominal fee.  Proprietary information may not be cited. Private
+ communications should be acknowledged in the main text, not referenced
+ (e.g., ``[Robertson, personal communication]'').
 
 \begin{table}
   \centering
@@ -502,25 +579,25 @@ versions of this document. Authors 1, 2, and 3 gratefully acknowledge
 the grant from NSF (\#1234--2012--ABC). \textit{This whole paragraph is
   just an example.}
 
-% Balancing columns in a ref list is a bit of a pain because you
-% either use a hack like flushend or balance, or manually insert
-% a column break.  http://www.tex.ac.uk/cgi-bin/texfaq2html?label=balance
-% multicols doesn't work because we're already in two-column mode,
-% and flushend isn't awesome, so I choose balance.  See this
-% for more info: http://cs.brown.edu/system/software/latex/doc/balance.pdf
-%
-% Note that in a perfect world balance wants to be in the first
-% column of the last page.
-%
-% If balance doesn't work for you, you can remove that and
-% hard-code a column break into the bbl file right before you
-% submit:
-%
-% http://stackoverflow.com/questions/2149854/how-to-manually-equalize-columns-
-% in-an-ieee-paper-if-using-bibtex
-%
-% Or, just remove \balance and give up on balancing the last page.
-%
+ Balancing columns in a ref list is a bit of a pain because you
+ either use a hack like flushend or balance, or manually insert
+ a column break.  http://www.tex.ac.uk/cgi-bin/texfaq2html?label=balance
+ multicols doesn't work because we're already in two-column mode,
+ and flushend isn't awesome, so I choose balance.  See this
+ for more info: http://cs.brown.edu/system/software/latex/doc/balance.pdf
+
+ Note that in a perfect world balance wants to be in the first
+ column of the last page.
+
+ If balance doesn't work for you, you can remove that and
+ hard-code a column break into the bbl file right before you
+ submit:
+
+ http://stackoverflow.com/questions/2149854/how-to-manually-equalize-columns-
+ in-an-ieee-paper-if-using-bibtex
+
+ Or, just remove \balance and give up on balancing the last page.
+
 \balance{}
 
 \section{References Format}
@@ -562,17 +639,17 @@ Hyperlink style used throughout this document uses blue links;
 however, URLs in the references section may optionally appear in
 black.
 
-% BALANCE COLUMNS
+ BALANCE COLUMNS
 \balance{}
 
-% REFERENCES FORMAT
-% References must be the same font size as other body text.
+ REFERENCES FORMAT
+ References must be the same font size as other body text.
 \bibliographystyle{SIGCHI-Reference-Format}
 \bibliography{sample}
 
 \end{document}
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
+ Local Variables:
+ mode: latex
+ TeX-master: t
+ End:
