@@ -262,7 +262,7 @@ In particular, we used the \textit{Fence API}\footnote{https://developers.google
 
 
 \section{User Study}
-To evaluate our concept and the actual implementation we invited a total of 25 participants to our user study. As the overall goal was to evaluate if users perceive the context information provided by our application correctly, we decided to generate 10 different use-cases (scenarios). We vocally discussed each scenario with the current participant, but all the context information had to be pulled out from the running app on a provided smartphone. Differing by the call trigger (meaning the reason why a participant had to call a person) and the context the person being called is in, the participants had to decide whether they would like to: 
+To evaluate our concept and the actual implementation we invited a total of 25 participants to our user study. As the overall goal was to evaluate if users perceive the context information provided by our application correctly, we decided to generate 10 different use-cases (scenarios). We vocally discussed each scenario with the current participant, but all the context information had to be pulled out from the running app on a provided smartphone. Differing by the call trigger (meaning the reason why a participant had to call a person) and the context the person being called (callee) is in, the participants had to decide whether they would like to: 
 
 \begin{enumerate}
 \item Make the call (or)
@@ -273,31 +273,31 @@ To evaluate our concept and the actual implementation we invited a total of 25 p
 
 Following the scenarios we asked additional questions with the participants acting the role of the driver (the person being called). Goal of these questions was to gather inside in the willingness of potential users to share more or less specific information.
 
-The following figures visualise the outcome of our user study. Figure \ref{fig:WouldYouCall_1} to \ref{fig:WouldYouCall_3} focus on the 10 different scenarios which can be distinguished along the x-axis. As mentioned they differ in the status the person being called is in (driving, cycling, still). Distribution of the answers given by our participants can be seen along the y-axis, while colours visualise the four possible choices.
+The following figures visualise the outcome of our user study. Figure \ref{fig:WouldYouCall_1} to \ref{fig:WouldYouCall_3} focus on the 10 different scenarios which can be distinguished along the x-axis. As mentioned they differ in the status the callee is in (driving, cycling, still). Distribution of the answers given by our participants can be seen along the y-axis, while colours visualise the four possible choices.
 
 \begin{figure}
 \centering
   \includegraphics[width=0.9\columnwidth]{figures/WouldYouCall_1}
-  \caption{User Study: Would you make the call (different scenarios)}~\label{fig:WouldYouCall_1}
+  \caption{User Study: Would you make the call (status driving)}~\label{fig:WouldYouCall_1}
 \end{figure}
 
-Highlighted in figure \ref{fig:WouldYouCall_1} you can see three different scenarios with the person being calling in the status 'driving'. As anticipated the majority of participants would not make a call in this situation (red bar). Moreover the majority would not like to send a text message straight away, or get notified if the status of the driver changes. Regarding our concept this outcome allows us to suppose that participants pulled the correct context information out of the app and that they consider the safety of the person they want to call.
+Highlighted in figure \ref{fig:WouldYouCall_1} you can see three different scenarios with the callee in the status 'driving'. As anticipated the majority of participants would not make a call in this situation (red bars). Moreover the majority would not like to send a text message straight away, or get notified if the status of the driver changes. Regarding our concept this outcome allows us to suppose that participants pulled the correct context information out of the app and that they consider the safety of the person they want to call.
 
 \begin{figure}
 \centering
   \includegraphics[width=0.9\columnwidth]{figures/WouldYouCall_2}
-  \caption{User Study: Would you make the call (different scenarios)}~\label{fig:WouldYouCall_2}
+  \caption{User Study: Would you make the call (status driving/with urgent call-trigger)}~\label{fig:WouldYouCall_2}
 \end{figure}
 
-In figure \ref{fig:WouldYouCall_2}
+Contrary to the confirmed hypotheses shown in figure \ref{fig:WouldYouCall_1} (people will not make the call when they see the callee is driving), we found three 'driving' scenarios in which the participants would in fact make the call, although the callee is displayed as driving. Figure \ref{fig:WouldYouCall_2} focuses on these three scenarios with a majority of participants making the call (green bars). Discussion with our participants provided enough feedback to ensure that these decisions were based on the call-trigger (the reason they had to make the call). With call-triggers getting urgent (an emergency in the family for instance), people tend to ignore the context of the callee. Consulting with the participants we decided that users should always have the possibility to make calls in case of emergencies and that blocking calls completely is ineligible.
 
 \begin{figure}
 \centering
   \includegraphics[width=0.9\columnwidth]{figures/WouldYouCall_3}
-  \caption{User Study: Would you make the call (different scenarios)}~\label{fig:WouldYouCall_3}
+  \caption{User Study: Would you make the call (status still)}~\label{fig:WouldYouCall_3}
 \end{figure}
 
-In figure \ref{fig:WouldYouCall_3}
+To gain even more proof of our concept we generated two scenarios with the callee being in the status 'still'. Figure \ref{fig:WouldYouCall_3} focuses on these two scenarios and provides assurance that participants perceive our provided context information correctly and make their call straight away.
 
 \begin{figure}
 \centering
