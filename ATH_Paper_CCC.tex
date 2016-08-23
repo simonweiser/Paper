@@ -177,7 +177,7 @@ TODO: put text here
 
 \section{Implementation}
 
-We designed a simple and ordinary contacts app which is enhanced by displaying the context of the person you want to call. For our goal the term context means to consider mostly all of these information:
+We designed a simple and ordinary contacts app which is enhanced by displaying the context of the person you want to call. In this case and for our goal, context refers particularly to the following information:
 \newline
 
 \begin{center}
@@ -202,12 +202,12 @@ Weather \\
 \end{table}
 \end{center}
 
-First of all you want to know what the person you want to call is doing at the moment. We distinguished between the activities \textit{driving}, \textit{cycling} and \textit{still} where the latter means the person to call is doing nothing right now and his/her device is motionless on a table for example. Depending on if someone is driving you want to have the listed additional information. One would be the road type which lets you know if someone is driving e.g. in a city or on a highway etc. Another one is the destination the person is heading to and the remaining travel time. Therefore you need the person's position. This could either be a pinpoint GPS-coordinate, or if the user does not want to share his exact location, just a radius or a place name of his current position. Another very important aspect of the person's context is if hands-free speaking is enabled or disabled while in the car. 
+Firstly, one will want to know what the recipient of the call is doing at the moment. We distinguished between the activities \textit{driving}, \textit{cycling} and \textit{still} whereby the latter means the person being called is doing nothing right now and his/her device is motionless, e.g. on a table etc. Depending on if someone is driving you want to have the listed additional information. One would be the road type which lets you know if someone is driving e.g. in a city or on a highway etc. Another one is the destination the person is heading to and the remaining travel time. Therefore you need the person's current position. This could either be a pinpoint GPS-coordinate, or if the user does not want to share his exact location, just a radius or a place name of his current position. Another very important aspect of the person's context is if hands-free speaking is enabled or disabled while in the car. 
 
-Besides information about the speed and the current weather situation are helpful to know. At the current state of our app all of these information can be accessed automatically except the destination and the remaining travel time, which have to be typed in manually.
+Furthermore, it is helpful to have data about the speed and the current weather situation. At the recent state of our app all of these information can be accessed automatically except the destination and the remaining travel time, which have to be typed in manually.
 
 \subsection{App Design}
-The Android-App we build basically consists of two different views, an overview and a detail view (see figure \ref{fig:app}).
+The Android-App we built, basically consists of two different views, an overview and a detail view (see figure \ref{fig:app}).
 \newline
 \begin{figure}[H]
 \centering
@@ -227,13 +227,13 @@ The Android-App we build basically consists of two different views, an overview 
 \label{fig:app}
 \end{figure}
 
-On the overview on the left you see all your contacts as you know it from other contacts apps, but with the additional information about a person's activity, which is shown by the icons next to the image and the string below the name. By taping on a contact, the detail view appears and shows the additional context information mentioned in table \ref{tab:cont}. The particular case in figure \ref{fig:app_2} for example gives information about the road type, the destination and the remaining travel time. Furthermore you get informed that hands-free speaking is enabled. If you then decide to call 'Anna' although she is driving, a small alert pops up and gives you three options (see figure \ref{fig:app_3}). You can either call her or not, or you make use of the '\textit{remind me}'-option which notifies you when her status is 'still'.
+On the overview on the left you see all your contacts as you know it from other contacts apps, added with information about a person's activity, which is shown by the icons next to the image and the string below the name. By tapping on a contact, the detail view appears and shows the additional context information mentioned in table \ref{tab:cont}. The particular case in figure \ref{fig:app_2} for example gives information about the road type, the destination and the remaining travel time. Furthermore you get informed that hands-free speaking is enabled. If you then decide to call 'Anna' although she is driving, a small alert pops up and gives you three options (see figure \ref{fig:app_3}). You can either choose to call her or not, or you make use of the '\textit{remind me}'-option which notifies you when her status is 'still'.
 \begin{figure}[H]
   \centering
   \includegraphics[width=.55\columnwidth]{figures/app_3}
   \caption{Alert Pop-Up}~\label{fig:app_3}
 \end{figure}
-At the beginning we implemented most of the context recognition by our own. We used for example GPS to find out if someone is driving. If someone's speed was over 10 kilometers per hour we set the status to 'driving'. But in mid-May of 2016 Google released its new so-called \textit{Awareness API}\footnote{https://developers.google.com/awareness/} which made things much easier for us as programmers. From this point on we were able to get the activity of a user by only a few lines of code and this API became the core of our application.
+At the beginning we implemented most of the context recognition by our own. We used GPS for example, to find out if someone is driving. If someone's speed was over 10 kilometers per hour we set the status to 'driving'. But in mid-May of 2016 Google released its new so-called \textit{Awareness API}\footnote{https://developers.google.com/awareness/} which made things much easier for us as programmers. From this point on we were able to get the activity data of a user by only a few lines of code and this API became the core of our application.
 
 The Awareness API is part of the \textit{Google Play Services} and is a unified sensing platform, enabling apps to be aware of all aspects of a user's context, while managing system health for you \cite{you16}. With this API your app is able to recognize the following 7 different context types \cite{goo16}:
 \begin{description}
@@ -253,10 +253,9 @@ Ambient conditions like the weather, which have an effect on the user's behavior
 The detected user activity (e.g. walking, running, biking and driving)
 \end{description}
 
-The latter of these is the important one for the goal of activity and context recognition. All of these information can be combined using \textit{AND}, \textit{OR}, and \textit{NOT} boolean operators to build complicated conditions that have to be met to trigger a notification. E.g. you can construct a condition that says that the user is driving in the car AND he is near a pharmacy AND it is during the opening hours of that shop. If these requirements are fulfilled, then you tell the user that he can pick up the wanted medication.
+The latter of these is the important one for the goal of activity and context recognition. All of these information can be combined using \textit{AND}, \textit{OR}, and \textit{NOT} boolean operators to build complicated conditions that have to be met to trigger a notification. E.g. you can construct a condition that says the user is driving in the car AND he is near a pharmacy AND it is during the opening hours of that shop. If these requirements are fulfilled, then you tell the user that he can pick up the wanted medication.
 
-In particular, we used the \textit{Fence API}\footnote{https://developers.google.com/awareness/android-api/fence-api-overview}, which is part of the Awareness API. The concept of \textit{fences} is taken from Geo-Fencing, in which a geographic region, or "Geo- Fence", is defined, and an app receives callbacks when a user enters or leaves a region. Only that in this case it is not a region that is entered but an activity. So whenever the activity state transitions, it lets our app react to the user's current activity. For example, "Tell me whenever the user is driving". Once the conditions are met the app receives a callback and we can update the status of a user.
-
+In particular, we used the \textit{Fence API}\footnote{https://developers.google.com/awareness/android-api/fence-api-overview}, which is part of the Awareness API. The concept of \textit{fences} is taken from Geo-Fencing, in which a geographic region, or "Geo- Fence", is defined, and an app receives callbacks when a user enters or leaves a region. What differs in this case is, that an activity is 'entered', not a region. So whenever the activity state transitions, it lets our app react to the user's current activity. For example: "Tell me whenever the user is driving". Once the conditions are met, the app receives a callback and we can update the status of a user.
 
 
 
