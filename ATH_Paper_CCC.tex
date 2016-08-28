@@ -169,7 +169,7 @@
 %5  relative to previous years. Abstracts should be about 150 %words and holdrios
 %  are required.
 %>>>>>>> Stashed changes:proceedings.tex
-How to reduce distraction while driving? This is a common question in these time of being always available. The number of mobile phone users are is increasing enormously. And so increases the desire of being available - no matter if you are in situations you shouldn't be distracted or even in danger situations. Due to this desire, the person called should not decide whether he is going to be called but the caller. Here we describe a solution to reduce the communication in the car - espacially in danger situations. An app that hands over the responsibility about if a call should be executed to the initiator by displaying informations about the context of the contact.
+How to reduce distraction while driving? This is a common question in these time of being always available. The number of mobile phone users is increasing enormously. And so increases the desire of being available - no matter if you are in situations you shouldn't be distracted or even in danger situations. Due to this desire, the person called should not decide whether he is going to be called but the caller. Here we describe a solution to reduce the communication in the car - espacially in danger situations. An app that hands over the responsibility about if a call should be executed to the initiator by displaying informations about the context of the contact.
 
 \end{abstract}
 
@@ -183,9 +183,9 @@ There are about 4.5 to 5 billion mobile phone users worldwide \cite{stat14} and 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.95\linewidth]{figures/worldwide_phoneuser}
-	\caption{Mobilephone users worldwide \cite{stat14}}
+	\caption{Mobilephone users worldwide} \cite{stat14}
 	\label{fig:app_worldwide}
-\end{figure} The extensive use of smartphones in the daily life produce a huge desire to be "always on". This desire leads people, to want to be available, in situations they should better take care about their environment, e.g. when u drive a vehicle in bad weather conditions. The risk of collision is four times higher during cell phone use while driving \cite{iihs05}.
+\end{figure} The extensive use of smartphones in the daily life produces a huge desire to be "always on". This desire leads people, to want to be available, in situations they should better take care about their environment, e.g. when you drive a vehicle in bad weather conditions. The risk of collision is four times higher during cell phone use while driving \cite{iihs05}.
 
 Because of this, the responsibility to execute a call should be on the side of the initiator. But to give the initiator the responsibility, there is the need to transfer context information about the contact to call.
 
@@ -211,7 +211,15 @@ Context information could be:
 \section{Related Work}
 %The problem of transfering the responsibility of a call to the initiator is to deliver the essential information to make a qualitative decision.
 
-TODO: Some related work here.
+ In 2007 Kern et al. evaluated an approach similar to ours \cite{kern07}. They designed a system that informs the caller about the callee's context \textit{before} initiating the call. Their goal was to thereby avoid unnecessary calls that would have ended anyway as soon as the caller knows the callee is in a driving situation. Their prototype "InCA-System" distinguished between three abstract recommendations for the caller:
+ 
+ \begin{enumerate}
+\item \textbf{Green}: Call can be taken (without any concerns)
+\item \textbf{Yellow}: Call would be inopportune (only call if necessary)
+\item \textbf{Red}: Call undesired by the callee (only call if very urgent)
+\end{enumerate}
+ 
+ The latter of these statuses can only be set manually by the driver, whereas the first two are automatically detected through in-car sensors. The evaluation of their system showed that the recommendations to the callers were considered and that the systems would be used by the drivers to make their driving experience more relaxing.
 
 \section{Concept}
 The goal was to build a simple tool which fits straight into the app-infrastructure of a usual smartphone user. We decided to replace the default contactlist-app with our implementation of a contactlist-app.
@@ -254,7 +262,7 @@ Weather \\
 \end{table}
 \end{center}
 
-Firstly, one will want to know what the recipient of the call is doing at the moment. We distinguished between the activities \textit{driving}, \textit{cycling} and \textit{still} whereby the latter means the person being called is doing nothing right now and his/her device is motionless, e.g. on a table etc. Depending on if someone is driving you want to have the listed additional information. One would be the road type which lets you know if someone is driving e.g. in a city or on a highway etc. Another one is the destination the person is heading to and the remaining travel time. Therefore you need the person's current position. This could either be a pinpoint GPS-coordinate, or if the user does not want to share his exact location, just a radius or a place name of his current position. Another very important aspect of the person's context is if hands-free speaking is enabled or disabled while in the car. 
+Firstly, one will want to know what the callee is doing at the moment. We distinguished between the activities \textit{driving}, \textit{cycling} and \textit{still} whereby the latter means the recipient of the call is doing nothing right now and his/her device is motionless, e.g. on a table etc. Depending on if someone is driving you want to have the listed additional information. One would be the road type which lets you know if someone is driving e.g. in a city or on a highway etc. Another one is the destination the person is heading to and the remaining travel time. Therefore you need the person's current position. This could either be a pinpoint GPS-coordinate, or if the user does not want to share his exact location, just a radius or a place name of his current position. Another very important aspect of the person's context is if hands-free speaking is enabled or disabled while in the car. 
 
 Furthermore, it is helpful to have data about the speed and the current weather situation. At the recent state of our app all of these information can be accessed automatically except the destination and the remaining travel time, which have to be typed in manually.
 
