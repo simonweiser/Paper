@@ -169,7 +169,7 @@
 %5  relative to previous years. Abstracts should be about 150 %words and holdrios
 %  are required.
 %>>>>>>> Stashed changes:proceedings.tex
-How to reduce distraction while driving? This is a common question in these time of being always available. The number of mobile phone users is increasing enormously. And so increases the desire of being available - no matter if you are in situations you shouldn't be distracted or even in danger situations. Due to this desire, the person called should not decide whether he is going to be called but the caller. Here we describe a solution to reduce the communication in the car - espacially in danger situations. An app that hands over the responsibility about if a call should be executed to the initiator by displaying informations about the context of the contact.
+How to reduce distraction while driving? This is a common question in these times of being always available. The number of mobile phone users is increasing enormously. And so increases the desire of being available - no matter if you are in situations you shouldn't be distracted or even in danger situations. Due to this desire, the person called should not decide whether he is going to be called but the caller. Here we describe a solution to reduce the communication in the car - especially in danger situations. An app that hands over the responsibility about if a call should be executed to the initiator by displaying informations about the context of the contact.
 
 \end{abstract}
 
@@ -185,18 +185,18 @@ There are about 4.5 to 5 billion mobile phone users worldwide \cite{stat14} and 
 	\includegraphics[width=.95\linewidth]{figures/worldwide_phoneuser}
 	\caption{Mobilephone users worldwide} \cite{stat14}
 	\label{fig:app_worldwide}
-\end{figure} The extensive use of smartphones in the daily life produces a huge desire to be "always on". This desire leads people, to want to be available, in situations they should better take care about their environment, e.g. when you drive a vehicle in bad weather conditions. The risk of collision is four times higher during cell phone use while driving \cite{iihs05}.
+\end{figure} The extensive use of smartphones in the daily life produces a huge desire to be "always on". This desire leads people to want to be available, in situations they should better take care about their environment, e.g. when driving a vehicle in bad weather conditions. The risk of collision is four times higher during cell phone use while driving \cite{iihs05}.
 
-Because of this, the responsibility to execute a call should be on the side of the initiator. But to give the initiator the responsibility, there is the need to transfer context information about the contact to call.
+Therefore the responsibility to execute a call should be on the side of the initiator. But in order to give the initiator the responsibility, there is the need to transfer context information about the callee.
 
 Context information could be:
 \begin{itemize}
 	\item \textit{In Vehicle}\\
 	If the contact is driving or not.
 	\item \textit{Vehicle Type}\\
-	The type of the vehicle, e.g. Car or Bicycle.
+	The type of the vehicle, e.g. car or bicycle.
 	\item \textit{Roadtype}\\
-	If the contact is "In Vehicle" the roadtype could be relevant. Is the contact driving through the city or on a motorway.
+	If the contact is "in vehicle" the roadtype could be relevant, which means is the contact driving through the city or on a motorway.
 	\item \textit{Speed}\\
 	The speed with which the contact is on the road.
 	\item \textit{Weather Conditions}\\
@@ -204,7 +204,7 @@ Context information could be:
 	\item \textit{Geo Location}\\
 	The exact position or the approximate region.
 	\item \textit{Speakerphone}\\
-	If hands free speaking is possible through speakerphone in the vehicle.
+	If hands-free speaking is possible through speakerphone in the vehicle.
 	\item \textit{And many more}
 \end{itemize}
 
@@ -222,11 +222,12 @@ Context information could be:
  The latter of these statuses can only be set manually by the driver, whereas the first two are automatically detected through in-car sensors. The evaluation of their system showed that the recommendations to the callers were considered and that the systems would be used by the drivers to make their driving experience more relaxing.
 
 \section{Concept}
-The goal was to build a simple tool which fits straight into the app-infrastructure of a usual smartphone user. We decided to replace the default contactlist-app with our implementation of a contactlist-app.
+The goal was to build a simple tool which fits straight into the app-infrastructure of a usual smartphone user. We decided to replace the default contacts list app with our implementation of a contacts list app.
 
-The gap that our app should close is the transfer of the context information. With this app the initiator sees, before the call happens, some relevant informaion to help to decide if the call is important enough to execute.
+The gap that our app should close is the transfer of the context information. With this app the initiator is able to see some relevant information before the call happens, which help to decide if the call is important enough to execute under the given circumstances of the callee.
 
-To deliver the context information from person A to person B the most efficent way is that person A sends the context information to a server everytimes the context changes. Person B requests the data from the server when it's required, e.g. when the contact is opened in the contactlist-app (see figure \ref{fig:app_concept}).
+To deliver the context information from person A to person B the most efficient way is the following:
+person A sends the context information to a server every time the context changes. Person B requests the data from the server when it's required, e.g. when the contact is opened in the contacts list app (see figure \ref{fig:app_concept}).
 
 \begin{figure}[H]
 	\centering
