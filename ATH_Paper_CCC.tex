@@ -221,14 +221,6 @@ Context information could be:
  
  The latter of these statuses can only be set manually by the driver, whereas the first two are automatically detected through in-car sensors. The evaluation of their system showed that the recommendations to the callers were considered and that the systems would be used by the drivers to make their driving experience more relaxing.
  
-<<<<<<< HEAD
-The base of our concept evolved from a market analysis. Focused on existing apps, we wanted to know  what features were currently provided by leading companies. \cite{aaa} \cite{glympse}
-ADAC Germany developed an extensive app with several useful features \cite{adac}. Especially the question which information to gather in our concept this app proved helpful as it uses GPS position and speed detection and provides information about weather, the traffic situation, congestions and construction sites.
-
-
-
-
-=======
  DeDe is another approach to define context-aware communication. Y. Jung, P. Persson and J. Blom present in their paper \cite{jung05} the design, implementation and validation of an enhanced mobile phone messaging system (DeDe), allowing the sender to define the context in which the message will be deliverd to the recipient.
  
  In Pittsburgh they researched in 2002 \cite{samar02} a signaling method to mitigate the risk of automobile accidents with in-car cell phone use. They show in a experiment how remote cell phone callers were induced to speak less during critical driving periods and in a second experiment, how the performance of a driver improved when callers reduced talking levels during critical driving situations.
@@ -301,13 +293,13 @@ The Android-App we built, basically consists of two different views, an overview
 \label{fig:app}
 \end{figure}
 
-On the overview on the left you see all your contacts as you know it from other contacts apps, added with information about a person's activity, which is shown by the icons next to the image and the string below the name. By tapping on a contact, the detail view appears and shows the additional context information mentioned in table \ref{tab:cont}. The particular case in figure \ref{fig:app_2} for example gives information about the road type, the destination and the remaining travel time. Furthermore you get informed that hands-free speaking is enabled. If you then decide to call 'Anna' although she is driving, a small alert pops up and gives you three options (see figure \ref{fig:app_3}). You can either choose to call her or not, or you make use of the '\textit{remind me}'-option which notifies you when her status is 'still'.
+On the overview on the left you see all your contacts as you know it from other contacts apps, added with information about a personfs activity, which is shown by the icons next to the image and the string below the name. By tapping on a contact, the detail view appears and shows the additional context information mentioned in table \ref{tab:cont}. The particular case in figure \ref{fig:app_2} for example gives information about the road type, the destination and the remaining travel time. Furthermore you get informed that hands-free speaking is enabled. If you then decide to call `Anna' although she is driving, a small alert pops up and gives you three options (see figure \ref{fig:app_3}). You can either choose to call her or not, or you make use of the `\textit{remind me}'-option which notifies you when her status is `still'.
 \begin{figure}[H]
   \centering
   \includegraphics[width=.55\columnwidth]{figures/app_3}
   \caption{Alert Pop-Up}~\label{fig:app_3}
 \end{figure}
-At the beginning we implemented most of the context recognition by our own. We used GPS for example, to find out if someone is driving. If someone's speed was over 10 kilometers per hour we set the status to 'driving'. But in mid-May of 2016 Google released its new so-called \textit{Awareness API}\footnote{https://developers.google.com/awareness/} which made things much easier for us as programmers. From this point on we were able to get the activity data of a user by only a few lines of code and this API became the core of our application.
+At the beginning we implemented most of the context recognition by our own. We used GPS for example, to find out if someone is driving. If someone's speed was over 10 kilometers per hour we set the status to `driving'. But in mid-May of 2016 Google released its new so-called \textit{Awareness API}\footnote{https://developers.google.com/awareness/} which made things much easier for us as programmers. From this point on we were able to get the activity data of a user by only a few lines of code and this API became the core of our application.
 
 The Awareness API is part of the \textit{Google Play Services} and is a unified sensing platform, enabling apps to be aware of all aspects of a user's context, while managing system health for you \cite{you16}. With this API your app is able to recognize the following 7 different context types \cite{goo16}:
 \begin{description}
@@ -329,7 +321,7 @@ The detected user activity (e.g. walking, running, biking and driving)
 
 The latter of these is the important one for the goal of activity and context recognition. All of these information can be combined using \textit{AND}, \textit{OR}, and \textit{NOT} boolean operators to build complicated conditions that have to be met to trigger a notification. E.g. you can construct a condition that says the user is driving in the car AND he is near a pharmacy AND it is during the opening hours of that shop. If these requirements are fulfilled, then you tell the user that he can pick up the wanted medication.
 
-In particular, we used the \textit{Fence API}\footnote{https://developers.google.com/awareness/android-api/fence-api-overview}, which is part of the Awareness API. The concept of \textit{fences} is taken from Geo-Fencing, in which a geographic region, or "Geo- Fence", is defined, and an app receives callbacks when a user enters or leaves a region. What differs in this case is, that an activity is 'entered', not a region. So whenever the activity state transitions, it lets our app react to the user's current activity. For example: "Tell me whenever the user is driving". Once the conditions are met, the app receives a callback and we can update the status of a user.
+In particular, we used the \textit{Fence API}\footnote{https://developers.google.com/awareness/android-api/fence-api-overview}, which is part of the Awareness API. The concept of \textit{fences} is taken from Geo-Fencing, in which a geographic region, or "Geo- Fence", is defined, and an app receives callbacks when a user enters or leaves a region. What differs in this case is, that an activity is `entered', not a region. So whenever the activity state transitions, it lets our app react to the user's current activity. For example: "Tell me whenever the user is driving". Once the conditions are met, the app receives a callback and we can update the status of a user.
 
 
 
@@ -354,7 +346,7 @@ The following figures visualise the outcome of our user study. Figure \ref{fig:W
   \caption{User Study: Would you make the call (status driving)}~\label{fig:WouldYouCall_1}
 \end{figure}
 
-Highlighted in figure \ref{fig:WouldYouCall_1} you can see three different scenarios with the callee in the status 'driving'. As anticipated the majority of participants would not make a call in this situation (red bars). Moreover the majority would not like to send a text message straight away, or get notified if the status of the driver changes. Regarding our concept this outcome allows us to suppose that participants pulled the correct context information out of the app and that they consider the safety of the person they want to call.
+Highlighted in figure \ref{fig:WouldYouCall_1} you can see three different scenarios with the callee in the status `driving'. As anticipated the majority of participants would not make a call in this situation (red bars). Moreover the majority would not like to send a text message straight away, or get notified if the status of the driver changes. Regarding our concept this outcome allows us to suppose that participants pulled the correct context information out of the app and that they consider the safety of the person they want to call.
 
 \begin{figure}[H]
 \centering
@@ -362,7 +354,7 @@ Highlighted in figure \ref{fig:WouldYouCall_1} you can see three different scena
   \caption{User Study: Would you make the call (status driving/with urgent call-trigger)}~\label{fig:WouldYouCall_2}
 \end{figure}
 
-Contrary to the confirmed hypotheses shown in figure \ref{fig:WouldYouCall_1} (people will not make the call when they see the callee is driving), we found three 'driving' scenarios in which the participants would in fact make the call, although the callee is displayed as driving. Figure \ref{fig:WouldYouCall_2} focuses on these three scenarios with a majority of participants making the call (green bars). Discussion with our participants provided enough feedback to ensure that these decisions were based on the call-trigger (the reason they had to make the call). With call-triggers getting urgent (an emergency in the family for instance), people tend to ignore the context of the callee. Consulting with the participants we decided that users should always have the possibility to make calls in case of emergencies and that blocking calls completely is ineligible.
+Contrary to the confirmed hypotheses shown in figure \ref{fig:WouldYouCall_1} (people will not make the call when they see the callee is driving), we found three `driving' scenarios in which the participants would in fact make the call, although the callee is displayed as driving. Figure \ref{fig:WouldYouCall_2} focuses on these three scenarios with a majority of participants making the call (green bars). Discussion with our participants provided enough feedback to ensure that these decisions were based on the call-trigger (the reason they had to make the call). With call-triggers getting urgent (an emergency in the family for instance), people tend to ignore the context of the callee. Consulting with the participants we decided that users should always have the possibility to make calls in case of emergencies and that blocking calls completely is ineligible.
 
 \begin{figure}[H]
 \centering
@@ -370,7 +362,7 @@ Contrary to the confirmed hypotheses shown in figure \ref{fig:WouldYouCall_1} (p
   \caption{User Study: Would you make the call (status still)}~\label{fig:WouldYouCall_3}
 \end{figure}
 
-To gain even more proof of our concept we generated two scenarios with the callee being in the status 'still'. Figure \ref{fig:WouldYouCall_3} focuses on these two scenarios and provides assurance that participants perceive our provided context information correctly and make their call straight away.
+To gain even more proof of our concept we generated two scenarios with the callee being in the status `still'. Figure \ref{fig:WouldYouCall_3} focuses on these two scenarios and provides assurance that participants perceive our provided context information correctly and make their call straight away.
 
 \begin{figure}[H]
 \centering
@@ -378,7 +370,7 @@ To gain even more proof of our concept we generated two scenarios with the calle
   \caption{User Study: What information are you willing to share}~\label{fig:WhatAreYouWillingToShare}
 \end{figure}
 
-With figure \ref{fig:WhatAreYouWillingToShare} we try to visualise the willingness of our participants to share context information with their phone contacts. After running through the previous ten scenarios we made sure that the participants understood the importance of the provided information and that more information might lead to a better understanding of the callee status (traffic situation, stress level and so on). Regarding the figure, the y-axis shows different information we would be able to provide in our concept app, the x-axis shows the amount of participants willing (green) or not willing (red) to share this information. As we can see, the willingness to share information is to be considered. While basic user information like the status (driving, cycling, still) or the availability of a hands-free unit is likely to being shared, more specific information like the target location or the precise user coordinates are not want to be published throughout the users contacts. Again consulting with our participants we found out that the willingness of information sharing increases, if the users were able to decide with information is provided for which contact in their lists. Carrying on this thought, participants ask for a grouping options (for instance 'family', 'friends', 'work') to adjust information sharing by hand.
+With figure \ref{fig:WhatAreYouWillingToShare} we try to visualise the willingness of our participants to share context information with their phone contacts. After running through the previous ten scenarios we made sure that the participants understood the importance of the provided information and that more information might lead to a better understanding of the callee status (traffic situation, stress level and so on). Regarding the figure, the y-axis shows different information we would be able to provide in our concept app, the x-axis shows the amount of participants willing (green) or not willing (red) to share this information. As we can see, the willingness to share information is to be considered. While basic user information like the status (driving, cycling, still) or the availability of a hands-free unit is likely to being shared, more specific information like the target location or the precise user coordinates are not want to be published throughout the users contacts. Again consulting with our participants we found out that the willingness of information sharing increases, if the users were able to decide with information is provided for which contact in their lists. Carrying on this thought, participants ask for a grouping options (for instance `family', `friends', `work') to adjust information sharing by hand.
 
 
 \section{Conclusion}
