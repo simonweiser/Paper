@@ -220,6 +220,13 @@ Context information could be:
 \end{enumerate}
  
  The latter of these statuses can only be set manually by the driver, whereas the first two are automatically detected through in-car sensors. The evaluation of their system showed that the recommendations to the callers were considered and that the systems would be used by the drivers to make their driving experience more relaxing.
+ 
+The base of our concept evolved from a market analysis. Focused on existing apps, we wanted to know  what features were currently provided by leading companies. \cite{aaa} \cite{glympse}
+ADAC Germany developed an extensive app with several useful features \cite{adac}. Especially the question which information to gather in our concept this app proved helpful as it uses GPS position and speed detection and provides information about weather, the traffic situation, congestions and construction sites.
+
+
+
+
 
 \section{Concept}
 The goal was to build a simple tool which fits straight into the app-infrastructure of a usual smartphone user. We decided to replace the default contacts list app with our implementation of a contacts list app.
@@ -371,86 +378,14 @@ With figure \ref{fig:WhatAreYouWillingToShare} we try to visualise the willingne
 \section{Conclusion}
 Concluding our user study we can say that the visual processing of the context information provided by our application is perceived correctly. The currently implemented degree of information, as seen in figure \ref{fig:app} is regarded as sufficient to distinguish between the three main statuses driving, cycling and still. In addition we figured out, that the reason why calls are being made might in fact make calls more important than safety concerns with the callee being in a driving situation. Moreover we had interesting insights in data privacy concerns of possible users, which make concept adjustments necessary to improve willingness to share information.
 
-TODO: Conclusion of Concept and App?
-
 \section{Future Work}
 To analyse user behaviour more closely we could think of reworking part of our application so it can be published in the Android app store. As this would exceed our current server capacities we would have to switch back-end strategies, as well as implement an appropriate logging tool to keep track of the generated user data.
 
-TODO: Whats left to do?
+\balance{}
 
-\section{Acknowledgments}
-
-Sample text: We thank all the volunteers, and all publications support
-and staff, who wrote and provided helpful comments on previous
-versions of this document. Authors 1, 2, and 3 gratefully acknowledge
-the grant from NSF (\#1234--2012--ABC). \textit{This whole paragraph is
-  just an example.}
-
- Balancing columns in a ref list is a bit of a pain because you
- either use a hack like flushend or balance, or manually insert
- a column break.  http://www.tex.ac.uk/cgi-bin/texfaq2html?label=balance
- multicols doesn't work because we're already in two-column mode,
- and flushend isn't awesome, so I choose balance.  See this
- for more info: http://cs.brown.edu/system/software/latex/doc/balance.pdf
-
- Note that in a perfect world balance wants to be in the first
- column of the last page.
-
- If balance doesn't work for you, you can remove that and
- hard-code a column break into the bbl file right before you
- submit:
-
- http://stackoverflow.com/questions/2149854/how-to-manually-equalize-columns-
- in-an-ieee-paper-if-using-bibtex
-
- Or, just remove \balance and give up on balancing the last page.
 
 \balance{}
 
-\section{References Format}
-Your references should be published materials accessible to the
-public. Internal technical reports may be cited only if they are
-easily accessible and may be obtained by any reader for a nominal
-fee. Proprietary information may not be cited. Private communications
-should be acknowledged in the main text, not referenced (e.g.,
-[Golovchinsky, personal communication]). References must be the same
-font size as other body text. References should be in alphabetical
-order by last name of first author. Use a numbered list of references
-at the end of the article, ordered alphabetically by last name of
-first author, and referenced by numbers in brackets. For papers from
-conference proceedings, include the title of the paper and the name of
-the conference. Do not include the location of the conference or the
-exact date; do include the page numbers if available. 
-
-References should be in ACM citation format:
-\url{http://www.acm.org/publications/submissions/latex_style}.  This
-includes citations to Internet
-resources~\cite{CHINOSAUR:venue,cavender:writing,psy:gangnam}
-according to ACM format, although it is often appropriate to include
-URLs directly in the text, as above. Example reference formatting for
-individual journal articles~\cite{ethics}, articles in conference
-proceedings~\cite{Klemmer:2002:WSC:503376.503378},
-books~\cite{Schwartz:1995:GBF}, theses~\cite{sutherland:sketchpad},
-book chapters~\cite{winner:politics}, an entire journal
-issue~\cite{kaye:puc},
-websites~\cite{acm_categories,cavender:writing},
-tweets~\cite{CHINOSAUR:venue}, patents~\cite{heilig:sensorama}, 
-games~\cite{supermetroid:snes}, and
-online videos~\cite{psy:gangnam} is given here.  See the examples of
-citations at the end of this document and in the accompanying
-\texttt{BibTeX} document. This formatting is a edited version of the
-format automatically generated by the ACM Digital Library
-(\url{http://dl.acm.org}) as ``ACM Ref.'' DOI and/or URL links are
-optional but encouraged as are full first names. Note that the
-Hyperlink style used throughout this document uses blue links;
-however, URLs in the references section may optionally appear in
-black.
-
- BALANCE COLUMNS
-\balance{}
-
- REFERENCES FORMAT
- References must be the same font size as other body text.
 \bibliographystyle{SIGCHI-Reference-Format}
 \bibliography{sample}
 
