@@ -169,7 +169,7 @@
 %5  relative to previous years. Abstracts should be about 150 %words and holdrios
 %  are required.
 %>>>>>>> Stashed changes:proceedings.tex
-How to reduce distraction while driving? This is a common question in these times of being always available. The number of mobile phone users is increasing enormously. And so increases the desire of being available - no matter if you are in situations you shouldn't be distracted or even in danger situations. Due to this desire, the person called should not decide whether he is going to be called but the caller. Here we describe a solution to reduce the communication in the car - especially in danger situations. An app that hands over the responsibility about if a call should be executed to the initiator by displaying informations about the context of the contact.
+How to reduce distraction by a smartphone while driving is a common question nowadays. The number of mobile phone users is increasing enormously. And concurrently increases the desire of being available - no matter if it's a situation you shouldn't be distracted or even in danger situations. Due to this desire, the callee should not decide whether to be called but the caller. Here we describe a concept and a implementation to reduce the communication in the car - especially in danger situations. We designed an app that hands over the responsibility about, if a call should be executed, to the initiator by displaying informations about the context of the contact. The final user study confirmed our approach and the context information is perceived correctly.
 
 \end{abstract}
 
@@ -182,7 +182,7 @@ How to reduce distraction while driving? This is a common question in these time
 There are about 4.5 to 5 billion mobile phone users worldwide \cite{stat14} and about 80 \% of all drivers are owning a smartphone.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.95\linewidth]{figures/worldwide_phoneuser}
+	\includegraphics[width=.8\linewidth]{figures/worldwide_phoneuser}
 	\caption{Mobilephone users worldwide} \cite{stat14}
 	\label{fig:app_worldwide}
 \end{figure} The extensive use of smartphones in the daily life produces a huge desire to be "always on". This desire leads people to want to be available, in situations they should better take care about their environment, e.g. when driving a vehicle in bad weather conditions. The risk of collision is four times higher during cell phone use while driving \cite{iihs05}.
@@ -195,8 +195,8 @@ Context information could be:
 	If the contact is driving or not.
 	\item \textit{Vehicle Type}\\
 	The type of the vehicle, e.g. car or bicycle.
-	\item \textit{Roadtype}\\
-	If the contact is "in vehicle" the roadtype could be relevant, which means is the contact driving through the city or on a motorway.
+%	\item \textit{Roadtype}\\
+%	If the contact is "in vehicle" the roadtype could be relevant, which means is the contact driving through the city or on a motorway.
 	\item \textit{Speed}\\
 	The speed with which the contact is on the road.
 	\item \textit{Weather Conditions}\\
@@ -207,6 +207,9 @@ Context information could be:
 	If hands-free speaking is possible through speakerphone in the vehicle.
 	\item \textit{And many more}
 \end{itemize}
+
+In the last decade there was a lot of research about this topic. Following we will point some related work to show the wide field of the current research as well as our concept and the implementation of the context-call Android application we designed. After building the application we conducted a user study to prove our expectation.
+
 
 \section{Related Work}
 %The problem of transfering the responsibility of a call to the initiator is to deliver the essential information to make a qualitative decision.
